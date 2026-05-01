@@ -1,0 +1,236 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:            #0D0D0D;
+  --surface:       #161616;
+  --surface-hi:    #1F1F1F;
+  --border:        #2A2A2A;
+  --primary:       #E8341C;
+  --primary-dk:    #C02A15;
+  --primary-glow:  rgba(232,52,28,.12);
+  --accent:        #F5A623;
+  --text:          #F5F5F5;
+  --muted:         #888;
+  --dim:           #444;
+  --success:       #22C55E;
+  --danger:        #EF4444;
+  --r:             8px;
+  --r-sm:          4px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Layout ─────────────────────────────────────────── */
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  height: 60px;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+
+.brand { display: flex; align-items: center; gap: .6rem; }
+.brand-icon { font-size: 1.4rem; }
+.brand-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.7rem;
+  letter-spacing: .06em;
+  color: var(--primary);
+}
+.brand-pill {
+  font-size: .62rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .14em;
+  color: var(--accent);
+  background: rgba(245,166,35,.1);
+  border: 1px solid rgba(245,166,35,.25);
+  padding: 2px 8px; border-radius: 100px;
+}
+
+.main {
+  flex: 1;
+  padding: 1.75rem 2rem;
+  max-width: 1380px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Role switcher ───────────────────────────────────── */
+.role-sw {
+  display: flex;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 3px; gap: 3px;
+}
+.role-btn {
+  padding: 5px 15px;
+  border: none; border-radius: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .8rem; font-weight: 600;
+  cursor: pointer; transition: all .18s;
+  background: transparent; color: var(--muted);
+}
+.role-btn.active { background: var(--primary); color: #fff; }
+.role-btn:not(.active):hover { color: var(--text); }
+
+/* ── Customer selector bar ───────────────────────────── */
+.cust-bar {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: .85rem 1.4rem;
+  margin-bottom: 1.4rem;
+}
+.cust-bar label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); white-space: nowrap; }
+
+/* ── Tabs ────────────────────────────────────────────── */
+.tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+.tab-btn {
+  padding: 10px 20px;
+  border: none; background: transparent;
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif; font-size: .875rem; font-weight: 600;
+  cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .18s;
+}
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+.tab-btn:not(.active):hover { color: var(--text); }
+
+/* ── Cards ───────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.card-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: .05em; }
+
+/* ── Stats ───────────────────────────────────────────── */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px,1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.25rem;
+  position: relative; overflow: hidden;
+}
+.stat-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background: var(--primary); }
+.stat-card.gold::before { background: var(--accent); }
+.stat-card.green::before { background: var(--success); }
+.stat-card.blue::before { background: #60A5FA; }
+.stat-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: .35rem; }
+.stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: .02em; line-height: 1; }
+
+/* ── Points banner ───────────────────────────────────── */
+.pts-banner {
+  background: linear-gradient(135deg,#1A1200,#1F1500);
+  border: 1px solid rgba(245,166,35,.28);
+  border-radius: var(--r); padding: 1.4rem 1.8rem;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+.pts-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); opacity: .8; }
+.pts-val { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--accent); letter-spacing: .02em; line-height:1; }
+
+/* ── Table ───────────────────────────────────────────── */
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+th { text-align: left; padding: 9px 12px; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); border-bottom: 1px solid var(--border); }
+td { padding: 11px 12px; border-bottom: 1px solid var(--border); }
+tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--surface-hi); }
+
+/* ── Menu grid ───────────────────────────────────────── */
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(190px,1fr)); gap: .85rem; }
+.menu-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.1rem;
+  cursor: pointer; transition: all .2s; position: relative;
+}
+.menu-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.menu-card.sel { border-color: var(--primary); background: var(--primary-glow); }
+.menu-cat { font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .35rem; }
+.menu-name { font-weight: 600; font-size: .92rem; margin-bottom: .45rem; }
+.menu-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; color: var(--primary); }
+.menu-qty-badge {
+  position: absolute; top: 8px; right: 8px;
+  background: var(--primary); color:#fff;
+  border-radius: 100px; font-size: .7rem; font-weight: 700;
+  padding: 1px 7px;
+}
+
+/* ── Cart ────────────────────────────────────────────── */
+.cart-item { display:flex; align-items:center; justify-content:space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.cart-item:last-child { border-bottom: none; }
+.cart-total { display:flex; justify-content:space-between; padding-top: 1rem; margin-top: .5rem; font-weight: 700; font-size: 1rem; }
+
+/* ── Forms ───────────────────────────────────────────── */
+.form-group { margin-bottom: .9rem; }
+.form-label { display:block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .3rem; }
+.form-input, .form-select {
+  width: 100%;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--r-sm); color: var(--text);
+  padding: 7px 11px;
+  font-family: 'DM Sans', sans-serif; font-size: .875rem;
+  outline: none; transition: border-color .18s;
+}
+.form-input:focus, .form-select:focus { border-color: var(--primary); }
+
+/* ── Buttons ─────────────────────────────────────────── */
+.btn {
+  padding: 7px 15px; border-radius: var(--r-sm);
+  font-family: 'DM Sans', sans-serif; font-size: .84rem; font-weight: 600;
+  cursor: pointer; border: none; transition: all .18s;
+  display: inline-flex; align-items: center; gap: .35rem;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dk); }
+.btn-primary:disabled { opacity: .45; cursor: not-allowed; }
+.btn-ghost { background: var(--surface-hi); color: var(--text); border: 1px solid var(--border); }
+.btn-ghost:hover { border-color: var(--muted); }
+.btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); }
+.btn-danger:hover { background: rgba(239,68,68,.1); }
+.btn-sm { padding: 4px 9px; font-size: .76rem; }
+
+/* ── Qty controls ────────────────────────────────────── */
+.qty-ctrl { display:flex; align-items:center; gap: .5rem; }
+.qty-btn { width:22px; height:22px; border:1px solid var(--border); background:var(--surface-hi); color:var(--text); border-radius:4px; cursor:pointer; display:flex;align-items:center;justify-content:center; font-size:.9rem; transition: all .15s; }
+.qty-btn:hover { border-color:var(--primary); color:var(--primary); }
+.qty-num { font-weight:600; min-width:18px; text-align:center; font-size:.88rem; }
+
+/* ── Alerts ──────────────────────────────────────────── */
+.alert { padding: 9px 14px; border-radius: var(--r-sm); font-size: .875rem; font-weight: 500; margin-bottom: 1rem; }
+.alert-ok  { background: rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.25); color: var(--success); }
+.alert-err { background: rgba(239,68,68,.1); border:1px solid rgba(239,68,68,.25); color: var(--danger); }
+
+/* ── Misc ────────────────────────────────────────────── */
+.section-title { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:.05em; margin-bottom:.9rem; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; }
+.loading { text-align:center; color:var(--muted); padding:3rem; font-size:.9rem; }
+.empty   { text-align:center; color:var(--dim); padding:2rem; font-size:.875rem; }
+.badge { display:inline-flex; align-items:center; padding:2px 8px; border-radius:100px; font-size:.7rem; font-weight:700; }
+.badge-gold  { background:rgba(245,166,35,.12); color:var(--accent); border:1px solid rgba(245,166,35,.28); }
+.badge-green { background:rgba(34,197,94,.1);  color:var(--success);  border:1px solid rgba(34,197,94,.25); }
+.badge-red   { background:rgba(239,68,68,.1);  color:var(--danger);   border:1px solid rgba(239,68,68,.25); }
+.gap-1 { gap:.5rem; } .gap-2 { gap:1rem; }
+.flex { display:flex; } .items-center { align-items:center; }
+.mt-1 { margin-top:.6rem; } .mt-2 { margin-top:1.2rem; }
+.mb-1 { margin-bottom:.6rem; }
+
+@media(max-width:768px) {
+  .two-col { grid-template-columns:1fr; }
+  .main { padding:1rem; }
+  .header { padding:0 1rem; }
+}
